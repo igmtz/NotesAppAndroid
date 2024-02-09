@@ -39,7 +39,7 @@ fun AddEditNoteScreen(
 
     val noteBackgroundAnimatable = remember {
         Animatable(
-            Color.White
+            Color(0xFF2E2D2D)
         )
     }
 
@@ -64,9 +64,9 @@ fun AddEditNoteScreen(
                 onClick = {
                     viewModel.onEvent(AddEditNoteEvent.SaveNote)
                 },
-                backgroundColor = MaterialTheme.colors.primary
+                backgroundColor = Color(0xFF202020),
             ) {
-                Icon(imageVector = Icons.Default.Save, contentDescription = "Save note")
+                Icon(imageVector = Icons.Default.Save, contentDescription = "Save note", tint = MaterialTheme.colors.primary)
             }
         },
         scaffoldState = scaffoldState

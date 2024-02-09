@@ -35,7 +35,7 @@ fun NoteItem(
     ) {
         Canvas(modifier = Modifier.matchParentSize()) {
             drawRoundRect(
-                color = Color(0xFF141414),
+                color = Color(0xFF202020),
                 size = size,
                 cornerRadius = CornerRadius(cornerRadius.toPx())
             )

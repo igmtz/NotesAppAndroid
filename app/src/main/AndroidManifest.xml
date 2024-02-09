@@ -14,6 +14,7 @@
         android:theme="@style/Theme.NotesAppAndroid"
         tools:targetApi="31">
         <activity
+            android:windowSoftInputMode="adjustResize"
             android:name="com.gmtz.notesappandroid.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.NotesAppAndroid">

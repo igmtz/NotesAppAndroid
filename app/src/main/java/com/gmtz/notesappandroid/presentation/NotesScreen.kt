@@ -52,12 +52,13 @@ fun NotesScreen(
                 onClick = {
                     navController.navigate(Screen.AddEditNoteScreen.route)
                 },
-                backgroundColor = Color(0xFF141414)
+                backgroundColor = Color(0xFF202020)
             ) {
-                Icon(imageVector = Icons.Default.Add, contentDescription = "Add note")
+                Icon(imageVector = Icons.Default.Add, contentDescription = "Add note", tint = MaterialTheme.colors.primary)
             }
         },
-        scaffoldState = scaffoldState
+        scaffoldState = scaffoldState,
+        backgroundColor = Color(0xFF2E2D2D)
     ) {
         Column(
             modifier = Modifier
@@ -71,7 +72,8 @@ fun NotesScreen(
             ) {
                 Text(
                     text = "Notes",
-                    style = MaterialTheme.typography.h4
+                    style = MaterialTheme.typography.h4,
+                    color = MaterialTheme.colors.primary
                 )
                 IconButton(
                     onClick = {
@@ -80,7 +82,8 @@ fun NotesScreen(
                 ) {
                     Icon(
                         imageVector = Icons.AutoMirrored.Filled.Sort,
-                        contentDescription = "Sort"
+                        contentDescription = "Sort",
+                        tint = MaterialTheme.colors.primary
                     )
                 }
             }

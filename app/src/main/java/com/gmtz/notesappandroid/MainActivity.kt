@@ -25,7 +25,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             NoteAppAndroidTheme {
                 Surface(
-                    color = MaterialTheme.colors.background
+                    color = MaterialTheme.colors.surface
                 ) {
                     val navController = rememberNavController()
                     NavHost(
@@ -36,8 +36,7 @@ class MainActivity : ComponentActivity() {
                             NotesScreen(navController = navController)
                         }
                         composable(
-                            route = Screen.AddEditNoteScreen.route +
-                                    "?noteId={noteId}&noteColor={noteColor}",
+                            route = Screen.AddEditNoteScreen.route,
                             arguments = listOf(
                                 navArgument(
                                     name = "noteId"

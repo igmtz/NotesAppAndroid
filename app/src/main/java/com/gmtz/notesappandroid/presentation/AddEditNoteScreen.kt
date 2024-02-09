@@ -39,7 +39,7 @@ fun AddEditNoteScreen(
 
     val noteBackgroundAnimatable = remember {
         Animatable(
-            Color.Green
+            Color.White
         )
     }
 

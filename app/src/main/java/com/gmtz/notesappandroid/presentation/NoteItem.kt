@@ -17,11 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.CornerRadius
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Path
-import androidx.compose.ui.graphics.drawscope.clipPath
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -32,34 +28,17 @@ fun NoteItem(
     note: Note,
     modifier: Modifier = Modifier,
     cornerRadius: Dp = 10.dp,
-    cutCornerSize: Dp = 30.dp,
     onDeleteClick: () -> Unit
 ) {
     Box(
         modifier = modifier
     ) {
         Canvas(modifier = Modifier.matchParentSize()) {
-            val clipPath = Path().apply {
-                lineTo(size.width - cutCornerSize.toPx(), 0f)
-                lineTo(size.width, cutCornerSize.toPx())
-                lineTo(size.width, size.height)
-                lineTo(0f, size.height)
-                close()
-            }
-
-            clipPath(clipPath) {
-                drawRoundRect(
-                    color = Color.Green,
-                    size = size,
-                    cornerRadius = CornerRadius(cornerRadius.toPx())
-                )
-                drawRoundRect(
-                    color = Color.LightGray,
-                    topLeft = Offset(size.width - cutCornerSize.toPx(), -100f),
-                    size = Size(cutCornerSize.toPx() + 100f, cutCornerSize.toPx() + 100f),
-                    cornerRadius = CornerRadius(cornerRadius.toPx())
-                )
-            }
+            drawRoundRect(
+                color = Color(0xFF141414),
+                size = size,
+                cornerRadius = CornerRadius(cornerRadius.toPx())
+            )
         }
         Column(
             modifier = Modifier
@@ -70,7 +49,7 @@ fun NoteItem(
             Text(
                 text = note.title,
                 style = MaterialTheme.typography.h6,
-                color = MaterialTheme.colors.onSurface,
+                color = MaterialTheme.colors.primary,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis
             )
@@ -78,7 +57,7 @@ fun NoteItem(
             Text(
                 text = note.content,
                 style = MaterialTheme.typography.body1,
-                color = MaterialTheme.colors.onSurface,
+                color = MaterialTheme.colors.primary,
                 maxLines = 10,
                 overflow = TextOverflow.Ellipsis
             )
@@ -90,7 +69,7 @@ fun NoteItem(
             Icon(
                 imageVector = Icons.Default.Delete,
                 contentDescription = "Delete note",
-                tint = MaterialTheme.colors.onSurface
+                tint = MaterialTheme.colors.primary
             )
         }
     }

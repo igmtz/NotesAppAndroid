@@ -34,6 +34,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.compose.foundation.lazy.items
+import androidx.compose.ui.graphics.Color
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @ExperimentalAnimationApi
@@ -51,7 +52,7 @@ fun NotesScreen(
                 onClick = {
                     navController.navigate(Screen.AddEditNoteScreen.route)
                 },
-                backgroundColor = MaterialTheme.colors.primary
+                backgroundColor = Color(0xFF141414)
             ) {
                 Icon(imageVector = Icons.Default.Add, contentDescription = "Add note")
             }
@@ -69,7 +70,7 @@ fun NotesScreen(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "Your note",
+                    text = "Notes",
                     style = MaterialTheme.typography.h4
                 )
                 IconButton(

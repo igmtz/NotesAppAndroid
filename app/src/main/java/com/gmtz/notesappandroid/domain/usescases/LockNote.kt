@@ -10,7 +10,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class LockNote {
     operator fun invoke(textToTranslate: String) {
-        Log.i("Lock", "Note locked")
         val policy = ThreadPolicy.Builder().permitAll().build()
         StrictMode.setThreadPolicy(policy)
 

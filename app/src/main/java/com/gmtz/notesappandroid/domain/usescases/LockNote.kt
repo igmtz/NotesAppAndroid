@@ -25,7 +25,7 @@ class LockNote {
 
         if (response.isSuccessful) {
             val translationResponse = response.body()
-            val translatedText = translationResponse?.contents?.translatedText ?: "Error"
+            val translatedText = translationResponse?.contents?.translatedText ?: "Error in translation"
             Log.i("Translated", translatedText)
         } else {
             Log.i("Lock", "Note not locked")

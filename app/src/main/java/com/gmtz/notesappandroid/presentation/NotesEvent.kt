@@ -6,5 +6,6 @@ import com.gmtz.notesappandroid.data.Note
 sealed class NotesEvent {
     data class Order(val noteOrder: NoteOrder): NotesEvent()
     data class DeleteNote(val note: Note): NotesEvent()
+    data class LockNote(val note: Note): NotesEvent()
     object ToggleOrderSection: NotesEvent()
 }

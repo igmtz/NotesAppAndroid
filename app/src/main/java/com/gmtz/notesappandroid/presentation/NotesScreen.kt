@@ -117,6 +117,9 @@ fun NotesScreen(
                             },
                         onDeleteClick = {
                             viewModel.onEvent(NotesEvent.DeleteNote(note))
+                        },
+                        onLockClick = {
+                            viewModel.onEvent(NotesEvent.LockNote(note))
                         }
                     )
                     Spacer(modifier = Modifier.height(16.dp))

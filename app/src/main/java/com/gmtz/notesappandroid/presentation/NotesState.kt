@@ -7,5 +7,6 @@ import com.gmtz.notesappandroid.data.Note
 data class NotesState(
     val notes: List<Note> = emptyList(),
     val noteOrder: NoteOrder = NoteOrder.Date(OrderType.Descending),
-    val isOrderSectionVisible: Boolean = false
+    val isOrderSectionVisible: Boolean = false,
+    val lockState: Boolean = false
 )

@@ -9,6 +9,7 @@ import com.gmtz.notesappandroid.domain.usescases.NoteUseCases
 import com.gmtz.notesappandroid.data.NoteDatabase
 import com.gmtz.notesappandroid.data.NoteRepository
 import com.gmtz.notesappandroid.domain.usescases.AddNote
+import com.gmtz.notesappandroid.domain.usescases.LockNote
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -42,7 +43,8 @@ object AppModule {
             getNotes = GetNotes(repository),
             deleteNote = DeleteNote(repository),
             addNote = AddNote(repository),
-            getNote = GetNote(repository)
+            getNote = GetNote(repository),
+            lockNote = LockNote()
         )
     }
 }

@@ -1,5 +1,6 @@
 package com.gmtz.notesappandroid.presentation
 
+import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
@@ -47,6 +48,13 @@ class NotesViewModel @Inject constructor(
                 _state.value = state.value.copy(
                     isOrderSectionVisible = !state.value.isOrderSectionVisible
                 )
+            }
+            is NotesEvent.LockNote -> {
+                noteUseCases.lockNote(event.note.title)
+                _state.value = state.value.copy(
+                    lockState = !state.value.lockState
+                )
+                Log.i("state", state.value.lockState.toString())
             }
         }
     }

@@ -13,6 +13,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.Lock
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -28,7 +29,8 @@ fun NoteItem(
     note: Note,
     modifier: Modifier = Modifier,
     cornerRadius: Dp = 10.dp,
-    onDeleteClick: () -> Unit
+    onDeleteClick: () -> Unit,
+    onLockClick: () -> Unit
 ) {
     Box(
         modifier = modifier
@@ -69,6 +71,16 @@ fun NoteItem(
             Icon(
                 imageVector = Icons.Default.Delete,
                 contentDescription = "Delete note",
+                tint = MaterialTheme.colors.primary
+            )
+        }
+        IconButton(
+            onClick = onLockClick,
+            modifier = Modifier.align(Alignment.TopEnd)
+        ) {
+            Icon(
+                imageVector = Icons.Default.Lock,
+                contentDescription = "Lock Note",
                 tint = MaterialTheme.colors.primary
             )
         }

@@ -52,13 +52,13 @@ fun NotesScreen(
                 onClick = {
                     navController.navigate(Screen.AddEditNoteScreen.route)
                 },
-                backgroundColor = Color(0xFF202020)
+                backgroundColor = MaterialTheme.colors.secondary
             ) {
-                Icon(imageVector = Icons.Default.Add, contentDescription = "Add note", tint = MaterialTheme.colors.primary)
+                Icon(imageVector = Icons.Default.Add, contentDescription = "Add note", tint = MaterialTheme.colors.primaryVariant)
             }
         },
         scaffoldState = scaffoldState,
-        backgroundColor = Color(0xFF2E2D2D)
+        backgroundColor = MaterialTheme.colors.background
     ) {
         Column(
             modifier = Modifier
@@ -120,7 +120,8 @@ fun NotesScreen(
                         },
                         onLockClick = {
                             viewModel.onEvent(NotesEvent.LockNote(note))
-                        }
+                        },
+                        backgroundColor = MaterialTheme.colors.secondary
                     )
                     Spacer(modifier = Modifier.height(16.dp))
                 }

@@ -1,6 +1,8 @@
 package com.gmtz.notesappandroid
 
+import android.content.res.Configuration
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.ExperimentalAnimationApi
@@ -25,13 +27,17 @@ import dagger.hilt.android.AndroidEntryPoint
  */
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    private fun isDarkModeEnabled(): Boolean {
+        val nightModeFlags = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
+        return nightModeFlags == Configuration.UI_MODE_NIGHT_YES
+    }
     @ExperimentalAnimationApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            NoteAppAndroidTheme {
+            NoteAppAndroidTheme(isDarkModeEnabled()) {
                 Surface(
-                    color = MaterialTheme.colors.surface
+                    color = MaterialTheme.colors.primary
                 ) {
                     val navController = rememberNavController()
                     NavHost(

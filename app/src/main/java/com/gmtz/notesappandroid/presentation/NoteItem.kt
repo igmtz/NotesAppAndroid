@@ -30,14 +30,15 @@ fun NoteItem(
     modifier: Modifier = Modifier,
     cornerRadius: Dp = 10.dp,
     onDeleteClick: () -> Unit,
-    onLockClick: () -> Unit
+    onLockClick: () -> Unit,
+    backgroundColor: Color
 ) {
     Box(
         modifier = modifier
     ) {
         Canvas(modifier = Modifier.matchParentSize()) {
             drawRoundRect(
-                color = Color(0xFF202020),
+                color = backgroundColor,
                 size = size,
                 cornerRadius = CornerRadius(cornerRadius.toPx())
             )
@@ -51,7 +52,7 @@ fun NoteItem(
             Text(
                 text = note.title,
                 style = MaterialTheme.typography.h6,
-                color = MaterialTheme.colors.primary,
+                color = MaterialTheme.colors.primaryVariant,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis
             )
@@ -59,7 +60,7 @@ fun NoteItem(
             Text(
                 text = note.content,
                 style = MaterialTheme.typography.body1,
-                color = MaterialTheme.colors.primary,
+                color = MaterialTheme.colors.primaryVariant,
                 maxLines = 10,
                 overflow = TextOverflow.Ellipsis
             )
@@ -71,7 +72,7 @@ fun NoteItem(
             Icon(
                 imageVector = Icons.Default.Delete,
                 contentDescription = "Delete note",
-                tint = MaterialTheme.colors.primary
+                tint = MaterialTheme.colors.primaryVariant
             )
         }
         IconButton(
@@ -81,7 +82,7 @@ fun NoteItem(
             Icon(
                 imageVector = Icons.Default.Lock,
                 contentDescription = "Lock Note",
-                tint = MaterialTheme.colors.primary
+                tint = MaterialTheme.colors.primaryVariant
             )
         }
     }

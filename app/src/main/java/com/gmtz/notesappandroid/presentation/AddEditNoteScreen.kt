@@ -18,9 +18,7 @@ import androidx.compose.material.icons.filled.Save
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
@@ -36,12 +34,6 @@ fun AddEditNoteScreen(
     val contentState = viewModel.noteContent.value
 
     val scaffoldState = rememberScaffoldState()
-
-    val noteBackgroundAnimatable = remember {
-        Animatable(
-            Color(0xFF2E2D2D)
-        )
-    }
 
     LaunchedEffect(key1 = true) {
         viewModel.eventFlow.collectLatest { event ->
@@ -64,9 +56,9 @@ fun AddEditNoteScreen(
                 onClick = {
                     viewModel.onEvent(AddEditNoteEvent.SaveNote)
                 },
-                backgroundColor = Color(0xFF202020),
+                backgroundColor = MaterialTheme.colors.secondary,
             ) {
-                Icon(imageVector = Icons.Default.Save, contentDescription = "Save note", tint = MaterialTheme.colors.primary)
+                Icon(imageVector = Icons.Default.Save, contentDescription = "Save note", tint = MaterialTheme.colors.primaryVariant)
             }
         },
         scaffoldState = scaffoldState
@@ -74,7 +66,7 @@ fun AddEditNoteScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .background(noteBackgroundAnimatable.value)
+                .background(MaterialTheme.colors.background)
                 .padding(16.dp)
         ) {
             Spacer(modifier = Modifier.height(16.dp))

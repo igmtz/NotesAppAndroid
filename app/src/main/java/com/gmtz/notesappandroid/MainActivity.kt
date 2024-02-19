@@ -17,6 +17,12 @@ import com.gmtz.notesappandroid.presentation.Screen
 import com.gmtz.notesappandroid.ui.theme.NoteAppAndroidTheme
 import dagger.hilt.android.AndroidEntryPoint
 
+/**
+ * The MainActivity class serves as the main entry point for the application's user interface and
+ * it extends the ComponentActivity.
+ * @property AndroidEntryPoint Indicates that it participates in Dagger Hilt's dependency injection.
+ * This annotation allows Dagger Hilt to inject dependencies into this class.
+ */
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     @ExperimentalAnimationApi

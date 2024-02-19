@@ -7,6 +7,13 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
 
+/**
+ * The NoteDao interface defines methods for accessing and manipulating note entities in the database.
+ * @property Dao Annotates the interface as a Data Access Object (DAO) for RoomDB. This annotation is used by Room to generate the necessary database access code at compile time.
+ * @property Query The value of the annotation includes the SQL query that will be run when this method is called.
+ * @property Insert It will insert classes annotated with @Entity into the database. The onConflict property defines what to do if a conflict happens.
+ * @property Delete It will delete classes annotated with @Entity into the database.
+ */
 @Dao
 interface NoteDao {
 

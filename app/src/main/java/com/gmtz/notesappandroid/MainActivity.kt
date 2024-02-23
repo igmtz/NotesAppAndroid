@@ -27,7 +27,7 @@ import dagger.hilt.android.AndroidEntryPoint
  */
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    private fun isDarkModeEnabled(): Boolean {
+    private fun isDarkModeEnabled(): Boolean { // TODO User preferences
         val nightModeFlags = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
         return nightModeFlags == Configuration.UI_MODE_NIGHT_YES
     }

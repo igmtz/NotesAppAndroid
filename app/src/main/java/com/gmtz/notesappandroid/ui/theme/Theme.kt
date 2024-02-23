@@ -3,8 +3,6 @@ package com.gmtz.notesappandroid.ui.theme
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.colorResource
 
 private val DarkColorPalette = darkColors(
     primary = BoneWhite,

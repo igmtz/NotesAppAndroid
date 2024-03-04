@@ -1,21 +1,22 @@
 package com.gmtz.notesappandroid
 
-import android.content.res.Configuration
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
+import androidx.compose.runtime.collectAsState
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.gmtz.notesappandroid.data.UserPreferences
 import com.gmtz.notesappandroid.presentation.AddEditNoteScreen
 import com.gmtz.notesappandroid.presentation.NotesScreen
 import com.gmtz.notesappandroid.presentation.Screen
+import com.gmtz.notesappandroid.presentation.SettingsScreen
 import com.gmtz.notesappandroid.ui.theme.NoteAppAndroidTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -27,19 +28,23 @@ import dagger.hilt.android.AndroidEntryPoint
  */
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    private fun isDarkModeEnabled(): Boolean { // TODO User preferences
-        val nightModeFlags = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
-        return nightModeFlags == Configuration.UI_MODE_NIGHT_YES
-    }
+
     @ExperimentalAnimationApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val userPreferences = UserPreferences(this)
         setContent {
-            NoteAppAndroidTheme(isDarkModeEnabled()) {
+            val navController = rememberNavController()
+            val darkMode = userPreferences.getDarkMode.collectAsState(initial = false)
+            val isDarkMode = darkMode.value
+            val colorBlindMode = userPreferences.getColorBlindMode.collectAsState(initial = false)
+            val isColorBlindMode = colorBlindMode.value
+
+            NoteAppAndroidTheme(isDarkMode, isColorBlindMode) {
                 Surface(
                     color = MaterialTheme.colors.primary
                 ) {
-                    val navController = rememberNavController()
+
                     NavHost(
                         navController = navController,
                         startDestination = Screen.NotesScreen.route
@@ -62,6 +67,9 @@ class MainActivity : ComponentActivity() {
                             AddEditNoteScreen(
                                 navController = navController
                             )
+                        }
+                        composable(route = Screen.SettingScreen.route) {
+                            SettingsScreen(navController, userPreferences, isDarkMode, isColorBlindMode)
                         }
                     }
                 }

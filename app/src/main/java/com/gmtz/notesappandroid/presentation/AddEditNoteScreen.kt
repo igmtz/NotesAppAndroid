@@ -1,7 +1,6 @@
 package com.gmtz.notesappandroid.presentation
 
 import android.annotation.SuppressLint
-import androidx.compose.animation.Animatable
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -58,7 +57,7 @@ fun AddEditNoteScreen(
                 },
                 backgroundColor = MaterialTheme.colors.secondary,
             ) {
-                Icon(imageVector = Icons.Default.Save, contentDescription = "Save note", tint = MaterialTheme.colors.primaryVariant)
+                Icon(imageVector = Icons.Default.Save, contentDescription = "Save note", tint = MaterialTheme.colors.onSecondary)
             }
         },
         scaffoldState = scaffoldState
@@ -81,7 +80,7 @@ fun AddEditNoteScreen(
                 },
                 isHintVisible = titleState.isHintVisible,
                 singleLine = true,
-                textStyle = MaterialTheme.typography.h5.copy(color = MaterialTheme.colors.primary)
+                textStyle = MaterialTheme.typography.h5.copy(color = MaterialTheme.colors.onBackground)
             )
             Spacer(modifier = Modifier.height(16.dp))
             TransparentHintTextField(
@@ -94,7 +93,7 @@ fun AddEditNoteScreen(
                     viewModel.onEvent(AddEditNoteEvent.ChangeContentFocus(it))
                 },
                 isHintVisible = contentState.isHintVisible,
-                textStyle = MaterialTheme.typography.body1.copy(color = MaterialTheme.colors.primary),
+                textStyle = MaterialTheme.typography.body1.copy(color = MaterialTheme.colors.onBackground),
                 modifier = Modifier.fillMaxHeight()
             )
         }

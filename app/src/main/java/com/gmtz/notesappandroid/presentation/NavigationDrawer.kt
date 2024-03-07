@@ -11,6 +11,7 @@ import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Api
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -39,6 +40,24 @@ fun NavigationDrawer(
             Spacer(modifier = Modifier.width(32.dp))
             Text(
                 text = "Settings",
+                color = MaterialTheme.colors.primary
+            )
+        }
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .clickable {
+                    navController.navigate(Screen.KtorClientScreen.route)
+                }
+                .padding(16.dp)
+        ) {
+            Icon(imageVector = Icons.Default.Api,
+                contentDescription = "API call",
+                tint = MaterialTheme.colors.primary
+            )
+            Spacer(modifier = Modifier.width(32.dp))
+            Text(
+                text = "API call",
                 color = MaterialTheme.colors.primary
             )
         }

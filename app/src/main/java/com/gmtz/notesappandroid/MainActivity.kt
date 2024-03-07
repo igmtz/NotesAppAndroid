@@ -7,13 +7,17 @@ import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.produceState
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.gmtz.notesappandroid.data.UserPreferences
+import com.gmtz.notesappandroid.data.ktor.PostResponse
+import com.gmtz.notesappandroid.data.ktor.PostService
 import com.gmtz.notesappandroid.presentation.AddEditNoteScreen
+import com.gmtz.notesappandroid.presentation.KtorClientScreen
 import com.gmtz.notesappandroid.presentation.NotesScreen
 import com.gmtz.notesappandroid.presentation.Screen
 import com.gmtz.notesappandroid.presentation.SettingsScreen
@@ -29,6 +33,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
+    private val client = PostService.create()
     @ExperimentalAnimationApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,11 +45,17 @@ class MainActivity : ComponentActivity() {
             val colorBlindMode = userPreferences.getColorBlindMode.collectAsState(initial = false)
             val isColorBlindMode = colorBlindMode.value
 
+            val posts = produceState<List<PostResponse>>(
+                initialValue = emptyList(),
+                producer = {
+                    value = client.getPosts()
+                }
+            )
+
             NoteAppAndroidTheme(isDarkMode, isColorBlindMode) {
                 Surface(
                     color = MaterialTheme.colors.primary
                 ) {
-
                     NavHost(
                         navController = navController,
                         startDestination = Screen.NotesScreen.route
@@ -70,6 +81,9 @@ class MainActivity : ComponentActivity() {
                         }
                         composable(route = Screen.SettingScreen.route) {
                             SettingsScreen(navController, userPreferences, isDarkMode, isColorBlindMode)
+                        }
+                        composable(route = Screen.KtorClientScreen.route) {
+                            KtorClientScreen(items = posts.value, navController)
                         }
                     }
                 }
